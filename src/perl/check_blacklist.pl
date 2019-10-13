@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 #Function that verifies if the news author/source is on the blacklist of authors/source. Returns a metric for future evaluation of seriousness'
 sub check_author_and_source{
 
@@ -5,8 +8,14 @@ sub check_author_and_source{
     $news_file_name = $_[0];
     $blacklist_file_name = $_[1];
     $number_lines = $_[2];
-    open (my $news, "<", $news_file_name) or die "Could not open news file $news_file_name: $!\n";
-    open (my $blacklist, "<", $blacklist_file_name) or die "Could not open blaklist file $blacklist_file_name: $!\n";
+
+    my $returnCheck = check_news_format($news_file_name);
+    if $returnCheck == 1{
+        exit(1)
+    }
+
+    open (my $news, "<", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $blacklist, "<", $blacklist_file_name) or die "ERROR: Could not open file $blacklist_file_name: $!\n";
 
     #Reads and discard the first and second line in order to get the author in the third line 
     my $line;
@@ -34,8 +43,8 @@ sub check_author_and_source{
     }
 
 
-    close $news or die "Could not close file $news_file_name: $!\n";
-    close $blacklist or die "Could not close file $blacklist_file_name: $!\n"
+    close $news or die "ERROR: Could not close file $news_file_name: $!\n";
+    close $blacklist or die "ERROR: Could not close file $blacklist_file_name: $!\n"
 
     return $counter;
 }
