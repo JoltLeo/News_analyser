@@ -10,8 +10,8 @@ sub check_author_and_source{
     $number_lines = $_[2];
 
     my $returnCheck = check_news_format($news_file_name);
-    if $returnCheck == 1{
-        exit(1)
+    if $returnCheck == -1{
+        return -1;
     }
 
     open (my $news, "<", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
