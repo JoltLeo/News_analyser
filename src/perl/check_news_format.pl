@@ -12,6 +12,7 @@ sub check_news_format{
         $line = <$news>;
     }
     if (not defined $line || $line eq ""){
+        close $news or die "ERROR: Could not close file $news_file_name: $!\n";
         exit(1);
     }
 
@@ -20,6 +21,7 @@ sub check_news_format{
         $line = <$news>;
     }
     if (not defined $line || $line eq ""){
+        close $news or die "ERROR: Could not close file $news_file_name: $!\n";
         exit(1);
     }
 
