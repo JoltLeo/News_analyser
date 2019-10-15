@@ -1,6 +1,7 @@
-pack
 use strict;
 use warnings;
+use constant CELEBRITY_WEIGHTS => {1,2,3}; #Falta ajeitar
+
 
 #Classification subjects:
 #(i) 'celebrity'
