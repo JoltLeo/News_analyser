@@ -38,7 +38,7 @@ sub check_celebrity_subject{
     my $word_counter = 0;
 
     while (<$news>) {
-        my @matches = $_ =~ m/\suma*\s/g;
+        my @matches = $_ =~ m/[^A-z]uma{0,1}[^A-z]/g;
         $line_counter = scalar(@matches);
         $word_counter = $word_counter + $line_counter;
     }    
