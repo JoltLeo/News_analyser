@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use check_news;
+use check_news_format;
 
 
 #Function that verifies if the news author/source is on the blacklist of authors/source. Returns a metric for future evaluation of seriousness'
@@ -12,7 +12,7 @@ sub check_author_and_source{
     $number_lines = $_[2];
 
     my $returnCheck = check_news_format($news_file_name);
-    if $returnCheck == -1{
+    if ($returnCheck == -1) {
         return -1;
     }
 

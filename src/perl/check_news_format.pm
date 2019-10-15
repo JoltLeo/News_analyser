@@ -1,4 +1,4 @@
-package check_news
+package check_news_format;
 
 use strict;
 use warnings;
@@ -15,11 +15,12 @@ our @EXPORT = qw( check_news_format );
 
 sub check_news_format{
     
-    ($news_file_name) = @_;
+    my $news_file_name = $_[0];
     open (my $news, "<", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
 
     my $line;
     my $number_lines = 2;
+    my $index;
     for ($index = 0; $index < $number_lines; $index++){
         $line = <$news>;
     }
@@ -38,4 +39,5 @@ sub check_news_format{
     }
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
+    return 0;
 }
