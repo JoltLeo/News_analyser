@@ -1,6 +1,9 @@
 use strict;
 use warnings;
 
+
+use File::Basename;
+use lib dirname (__FILE__);
 use check_news_format;
 
 #use constant CELEBRITY_WEIGHTS => {1,2,3}; #Falta ajeitar
