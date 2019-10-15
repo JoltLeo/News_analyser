@@ -1,5 +1,17 @@
+package check_news
+
 use strict;
 use warnings;
+use Exporter;
+
+our @ISA= qw( Exporter );
+
+# these CAN be exported.
+our @EXPORT_OK = qw(check_news_format);
+
+# these are exported by default.
+our @EXPORT = qw( check_news_format );
+
 
 sub check_news_format{
     

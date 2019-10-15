@@ -1,5 +1,7 @@
 use strict;
 use warnings;
+use check_news;
+
 
 #Function that verifies if the news author/source is on the blacklist of authors/source. Returns a metric for future evaluation of seriousness'
 sub check_author_and_source{

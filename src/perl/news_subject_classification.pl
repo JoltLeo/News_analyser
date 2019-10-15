@@ -1,5 +1,7 @@
 use strict;
 use warnings;
+use check_news;
+
 use constant CELEBRITY_WEIGHTS => {1,2,3}; #Falta ajeitar
 
 
@@ -13,6 +15,7 @@ use constant CELEBRITY_WEIGHTS => {1,2,3}; #Falta ajeitar
 
 #Function that evaluate if it is a celebrity news. Returns a grade from 0 to 100 representing the chance of the news' 
 #subject be celebrity.
+#Main words: 
 sub check_celebrity_sunject{
 
     #Receives news' file
@@ -33,3 +36,6 @@ sub check_celebrity_sunject{
     
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
+
+
+
