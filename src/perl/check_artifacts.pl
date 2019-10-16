@@ -101,7 +101,7 @@ sub check_curse_words{
 
     while ($curse_word = <$curse_file>){
         while ($news_line = <$news>){
-            @matches = $_ =~ /$curse_word/;
+            @matches = $news_line =~ /$curse_word/;
             $temporary_counter = scalar(@matches);
             $counter = $counter + $temporary_counter;
             $news_line =~ s/$curse_word/*censurado*/g;
@@ -136,7 +136,9 @@ sub final_classifier{
 
 #The comments below were used for testing the code
 
-my $news_name = "arquivo.txt";
+#my $news_name = "arquivo.txt";
 #my $counter = check_emoticons($news_name);
-my $counter = check_first_person($news_name);
-print $counter,"\n";
+#my $counter = check_first_person($news_name);
+#my $curse_file_name = "palavroes.txt";
+#my $counter = check_curse_words($news_name,$curse_file_name);
+#print $counter,"\n";
