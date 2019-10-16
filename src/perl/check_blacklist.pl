@@ -10,9 +10,9 @@ use check_news_format;
 sub check_author_and_source{
 
     #Receives news file and author blacklist file
-    $news_file_name = $_[0];
-    $blacklist_file_name = $_[1];
-    $number_lines = $_[2];
+    my $news_file_name = $_[0];
+    my $blacklist_file_name = $_[1];
+    my $number_lines = $_[2];
 
     my $returnCheck = check_news_format($news_file_name);
     if ($returnCheck == -1) {
@@ -28,28 +28,27 @@ sub check_author_and_source{
     for ($index = 0; $index < $number_lines; $index++){
         $line = <$news>;
     }
-
-    #Verifies how the author is informed in the file
-    if ($number_lines == 3){
-        if ($line =~ /[Aa]utor:|[Aa]utor\s-/){
-            @word = split /:\-/, $line;
-            $line = @word[1];
-        }
-    }
-
+    
     my $line2;
     my $counter = 0;
 
-    #Compares each line from the blacklist with the authors line to verifie if author is marked or not
+    #Compares each line from the blacklist with the authors line to verify if author is marked or not
     while ($line2 = <$blacklist>) {
-        if ($line =~ /$line2/ ){
+        if ($line =~ /$line2/i ){
             $counter = $counter + 1;
         }
     }
 
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
-    close $blacklist or die "ERROR: Could not close file $blacklist_file_name: $!\n"
+    close $blacklist or die "ERROR: Could not close file $blacklist_file_name: $!\n";
 
     return $counter;
 }
+
+#The comments below were used to test the code
+#my $file_test = "arquivo.txt";
+#my $blacklist_file = "blacklist.txt";
+#my $line_number = 2;
+#my $counter = check_author_and_source($file_test, $blacklist_file, 4);
+#print $counter,"\n";
