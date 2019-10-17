@@ -22,6 +22,7 @@ sub print_menu{
     print "|Type 4 to count artifacts less serious on the news                       |\n";
     print "|Type 5 to classify if the news is serious or NOT serious                 |\n";
     print "---------------------------------------------------------------------------\n";
+    print "NOTE: this program do not interpret English news, you MUST enter a news text file written in PORTUGUESE when asked!\n\n";
 }
 
 my $pressed_key;
