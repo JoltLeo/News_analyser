@@ -29,10 +29,9 @@ sub check_news_format{
         return -1;
     }
 
-    $number_lines = 2;
-    for ($index = 0; $index < $number_lines; $index++){
-        $line = <$news>;
-    }
+    $line = <$news>;
+
+    my @matches = $line =~ m/\d\d\/\d\d\/\d\d/
     if (not defined $line || $line eq ""){
         close $news or die "ERROR: Could not close file $news_file_name: $!\n";
         return -1;
