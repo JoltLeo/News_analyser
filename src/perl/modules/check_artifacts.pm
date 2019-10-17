@@ -8,7 +8,7 @@ use Exporter;
 our @ISA= qw( Exporter );
 
 # these CAN be exported.
-our @EXPORT_OK = qw(check_emoticons check_first_person check_upper_to_lower_case_ratio check_curse_words final_classifier);
+our @EXPORT_OK = qw(check_emoticons check_first_person check_upper_to_lower_case_ratio check_curse_words check_superlative final_classifier);
 
 # these are exported by default.
 our @EXPORT = qw(final_classifier);
