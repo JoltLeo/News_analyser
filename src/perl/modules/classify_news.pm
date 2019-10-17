@@ -5,9 +5,6 @@ use warnings;
 use List::Util qw( max );
 use Exporter;
 
-use File::Basename;
-use lib dirname (__FILE__) . "/modules";
-
 #My modules
 use check_news_format;
 use check_artifacts;
@@ -22,8 +19,6 @@ our @EXPORT_OK = qw(classify_news);
 # these are exported by default.
 our @EXPORT = qw(classify_news);
 
-
-
 #Classify news in serious or not serious. Returns 0 for a serious news and 1 for a not serious news
 sub classify_news{
 
@@ -32,13 +27,14 @@ sub classify_news{
     #Arguments: path news text file [blacklist text file [curse words text file]] 
     if ((scalar (@inputs) < 1) || (scalar (@inputs) > 3) ){
         print "Incorrect input\n";
-        print "Try: ./<name of program>.pl <path to news text file> [path to blacklist text file [curse words text file]] \n\n";
+        print "Try: ./<name of program>.pl <path to news text file> [path to blacklist text file [curse words text file]] \n";
+        print "NOTE: you MUST enter a news text file written in PORTUGUESE!\n\n";
         return -2;
     }
 
     #Checking if the news is on the right format
     if (check_news_format ($inputs[0]) == -1) {
-        print "News text file in wrong format! Check documentation at https://github.com/JoltLeo/News_analyser \n";
+        print "News text file $inputs[0] in wrong format! Check documentation at https://github.com/JoltLeo/News_analyser \n";
         return -1;
     }
 
@@ -72,19 +68,19 @@ sub classify_news{
         print "\nUsing default text file for curse words\n";
     }
 
-    print "\nThe news subject is ",$news_subject, ".\n";
-    print "In this news, there are:\n\n",$blacklist[0] == 0 ? "The author is NOT on the blacklist;\n":"The author is on the blacklist;\n", $blacklist[1] == 0 ?"The sourcer is NOT on the blacklist;\n": "The source is on the blacklist;\n"; 
-    print $artifacts[0], " emoticons;\n", $artifacts[1], " first person;\n", $artifacts[2], " upper to lower case ratio;\n", $artifacts[3], " curse words.\n\n"; 
+    print "\nThe $inputs[0] subject is ",$news_subject, ".\n";
+    print "In $inputs[0], there are:\n\n",$blacklist[0] == 0 ? "The author is NOT on the blacklist;\n":"The author is on the blacklist;\n", $blacklist[1] == 0 ?"The sourcer is NOT on the blacklist;\n": "The source is on the blacklist;\n"; 
+    print $artifacts[0], " emoticons;\n", $artifacts[1], " first person;\n", $artifacts[2], " upper to lower case ratio;\n", $artifacts[3], " curse words;\n",$artifacts[4]," superlatives\n\n"; 
 
 
     #Author or source on blacklist means that the news is not serious
     if ($blacklist[0] != 0){
-        print "\nThe author is on the blacklist, so the news is not serious.\n";
+        print "\nThe author is on the blacklist, so the $inputs[0] is not serious.\n";
         return 1;
     }
 
     if ($blacklist[1] != 0){
-        print "\nThe source is on the blacklist, so the news is not serious.\n";
+        print "\nThe source is on the blacklist, so the $inputs[0] is not serious.\n";
         return 1;
     }
 
@@ -95,40 +91,40 @@ sub classify_news{
         #Only upper to lower case ratio and curse words matter
         @grades = ($artifacts[2], $artifacts[3]);
         if (($grades[0] > 0.056) || ($grades[1] > 0)){
-            print "\nThis celebrity news is NOT serious.\n\n";
+            print "\nThis celebrity news $inputs[0] is NOT serious.\n\n";
             return 1;
         }
-        print "\nThis celebrity news is serious.\n\n";
+        print "\nThis celebrity news $inputs[0] is serious.\n\n";
         return 0
     }
     elsif ($news_subject eq "economy"){
         #Only emoticons, first person, upper to lower case ratio and curse words matter
         @grades = @artifacts;
         if (($grades[0] > 0) || ($grades[1] > 3) || ($grades[2] > 0.056) || ($grades[3] > 0)){
-            print "\nThis economy news is NOT serious.\n\n";
+            print "\nThis economy news $inputs[0] is NOT serious.\n\n";
             return 1;
         }
-        print "\nThis economy news is serious.\n\n";
+        print "\nThis economy news is $inputs[0] serious.\n\n";
         return 0
     }
     elsif ($news_subject eq "politics"){
         #Only emoticons, upper to lower case ratio and curse words matter
         @grades = ($artifacts[0], $artifacts[2], $artifacts[3]);
         if (($grades[0] > 0) || ($grades[1] > 0.06) || ($grades[2] > 0)){
-            print "\nThis politics news is NOT serious.\n\n";
+            print "\nThis politics news $inputs[0] is NOT serious.\n\n";
             return 1;
         }
-        print "\nThis politics news is serious.\n\n";
+        print "\nThis politics news $inputs[0] is serious.\n\n";
         return 0
     }
     elsif ($news_subject eq "science"){
         #Only emoticons, first person, upper to lower case ratio and curse words matter
         @grades = @artifacts;
         if (($grades[0] > 0) || ($grades[1] > 4) || ($grades[2] > 0.052) || ($grades[3] > 0)){
-            print "\nThis science news is NOT serious.\n\n";
+            print "\nThis science news $inputs[0] is NOT serious.\n\n";
             return 1;
         }
-        print "\nThis science news is serious.\n\n";
+        print "\nThis science news $inputs[0] is serious.\n\n";
         return 0
 
     }
@@ -136,11 +132,12 @@ sub classify_news{
         #Only emoticons, upper to lower case ratio and curse words matter
         @grades = ($artifacts[0], $artifacts[2], $artifacts[3]);
         if (($grades[0] > 0) || ($grades[1] > 0.056) || ($grades[2] > 0)){
-            print "\nThis sports news is NOT serious.\n\n";
+            print "\nThis sports news $inputs[0] is NOT serious.\n\n";
             return 1;
         }
-        print "\nThis sports news is serious.\n\n";
+        print "\nThis sports news $inputs[0] is serious.\n\n";
         return 0
     }
     return -1;
 }
+
