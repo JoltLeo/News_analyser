@@ -2,6 +2,9 @@ package news_subject_classification;
 
 use strict;
 use warnings;
+use List::Util qw( max );
+
+
 use check_news_format;
 
 use Exporter;
@@ -9,10 +12,10 @@ use Exporter;
 our @ISA= qw( Exporter );
 
 # these CAN be exported.
-our @EXPORT_OK = qw(check_celebrity_subject check_economy_subject check_politics_subject check_science_subject check_sports_subject);
+our @EXPORT_OK = qw(classify_subject check_celebrity_subject check_economy_subject check_politics_subject check_science_subject check_sports_subject);
 
 # these are exported by default.
-our @EXPORT = qw(check_celebrity_subject check_economy_subject check_politics_subject check_science_subject check_sports_subject);
+our @EXPORT = qw(classify_subject);
 
 #Contain functions check_celebrity_subject, check_economy_subject, check_politics_subject, check_science_subject and check_sports_subject
 
@@ -597,6 +600,36 @@ sub check_sports_subject{
 #    print $metric,"\n"; 
     return $metric;
 }
+
+sub classify_subject {
+
+    my $news_file_name = $_[0];
+
+    my @subject_grades = (check_celebrity_subject ($news_file_name), check_economy_subject ($news_file_name), check_politics_subject ($news_file_name), check_science_subject ($news_file_name), check_sports_subject ($news_file_name));
+#    for (@subject_grades) {
+#        print $_, "\n";
+#    }
+
+    my $max_grade = max (@subject_grades);
+
+    if ($subject_grades[0] == $max_grade) {
+        return "celebrity";
+    }
+    elsif ($subject_grades[1] == $max_grade) {
+        return "economy"; 
+    }
+    elsif ($subject_grades[2] == $max_grade) {
+        return "politics"; 
+    }
+    elsif ($subject_grades[3] == $max_grade) {
+        return "science"; 
+    }
+    else{  
+        return "sports"; 
+    }
+    return -1;
+}
+
 
 #-------------------------------------------------------------------------------------------------------------------
 
