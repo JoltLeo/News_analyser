@@ -132,19 +132,13 @@ sub check_curse_words{
 }
 
 #The final_classifier metric receives the metrics calculated from the other functions and classifies the news as serious or not
+#Inputs: news text file, curse_words text file
 sub final_classifier{
     #Receives the metrics from the other functions to classify the seriousness metrics
-     my $curse_word_metrics = $_[0]; 
-     my $upper_case_metrics = $_[1];
-     my $blacklist_metrics = $_[2];
-     my $first_person_metrics = $_[3];
-     my $emoticon_metrics = $_[4]; 
-     my$news_topic = $_[5];
+     my @inputs = ($_[0], $_[1]); 
+     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words (@inputs));
 
-    my $final_metric;
-
-    return $final_metric;
-
+    return @results;
 }
 
 #The comments below were used for testing the code
