@@ -131,6 +131,28 @@ sub check_curse_words{
     return $counter;
 }
 
+#The check_superlative function counts the use of superlatives (via portuguese superlative ending matching) in the news file
+#Inputs: news text file
+sub check_superlative{
+    my $news_file_name = $_[0];
+
+    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+
+    my @matches;
+    my $temporary_counter = 0;
+    my $counter = 0;
+
+    while(<$news>){
+        @matches = $_ =~ m/\N{U+00ED}ssimo\s|\N{U+00E9}rrimo\s/g;
+        $temporary_counter = scalar(@matches);
+        $counter = $temporary_counter + $counter;
+    }
+
+    close $news or die "ERROR: Could not close file $news_file_name: $!\n";
+
+    return $counter;
+}
+
 #The final_classifier metric receives the metrics calculated from the other functions and classifies the news as serious or not
 #Inputs: news text file, curse_words text file
 sub final_classifier{
@@ -143,9 +165,11 @@ sub final_classifier{
 
 #The comments below were used for testing the code
 
-#my $news_name = "arquivo.txt";
+my $news_name = "test_archive.txt";
 #my $counter = check_emoticons($news_name);
 #my $counter = check_first_person($news_name);
 #my $curse_file_name = "palavroes.txt";
 #my $counter = check_curse_words($news_name,$curse_file_name);
 #print $counter,"\n";
+my $counter = check_superlative($news_name);
+print $counter, "\n";
