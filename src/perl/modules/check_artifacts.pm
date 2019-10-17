@@ -158,18 +158,18 @@ sub check_superlative{
 sub final_classifier{
     #Receives the metrics from the other functions to classify the seriousness metrics
      my @inputs = ($_[0], $_[1]); 
-     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words (@inputs));
+     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words (@inputs), check_superlative ($inputs[0]));
 
     return @results;
 }
 
 #The comments below were used for testing the code
 
-my $news_name = "test_archive.txt";
+#my $news_name = "test_archive.txt";
 #my $counter = check_emoticons($news_name);
 #my $counter = check_first_person($news_name);
 #my $curse_file_name = "palavroes.txt";
 #my $counter = check_curse_words($news_name,$curse_file_name);
 #print $counter,"\n";
-my $counter = check_superlative($news_name);
-print $counter, "\n";
+#my $counter = check_superlative($news_name);
+#print $counter, "\n";
