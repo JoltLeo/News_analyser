@@ -52,14 +52,14 @@ sub check_emoticons{
 sub check_first_person{
     #Receives the news file as arguments
     my $news_file_name = $_[0];
-    open (my $news, "<", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
 
     my $counter = 0;
     my @matches;
     my $temporary_counter = 0;
 
     while (<$news>){
-        @matches = $_ =~ m/\b[Ee]u\b|\b[Mm]inha\b|\b[Mm]eu\b|\b[Bb]log[s]\b|\b[Nn]ós\b|\b[Aa]\sgente\b/g;
+        @matches = $_ =~ m/\b[Ee]u\b|\b[Mm]inha\b|\b[Mm]eu\b|\b[Nn]\N{U+00F3}s\b|\b[Aa]\sgente\b/g;
         $temporary_counter = scalar(@matches);
         
         $counter = $temporary_counter + $counter;
