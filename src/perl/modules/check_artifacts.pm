@@ -100,42 +100,30 @@ sub check_curse_words{
     #Receives the news file and the file containing curse words as arguments
     my $news_file_name = $_[0]; 
     my $curse_word_file_name = $_[1];
-    my $temporary_news_file_name = "tempFileToCheck";
 
     open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
     open (my $curse_file, "<:encoding(UTF-8)", $curse_word_file_name) or die "ERROR: Could not open file $curse_word_file_name: $!\n";
-    open (my $temporary_news_file, "+>:encoding(UTF-8)", $temporary_news_file_name) or die "ERROR: Could not open file $temporary_news_file_name: $!\n";
 
-    my $news_line;
     my $curse_word;
+	my $news_line;
     my $counter = 0;
     my $temporary_counter = 0;
+	my $number_of_curses = 0;
     my @matches;
-
-    
-    while ($news_line = <$news>){
-        print $temporary_news_file $news_line;     
-    }
-
-    seek ($temporary_news_file,0,0);
+	my $line_counter = 0;
        
     while ($curse_word = <$curse_file>){
         chomp $curse_word;
-        while ($news_line = <$temporary_news_file>){
+        while ($news_line = <$news>){
+			$counter ++;
             @matches = $news_line =~ m/$curse_word/g;
             $temporary_counter = scalar(@matches);
-            $counter = $counter + $temporary_counter;
-            $news_line =~ s/$curse_word/*censurado*/g;
-            print $temporary_news_file $news_line;            
+            $counter = $temporary_counter + $counter;
         }
-        seek ($temporary_news_file,0,0);
     }
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
     close $curse_file or die "ERROR: Could not close file $curse_word_file_name: $!\n";
-    close $temporary_news_file or die "ERROR: Could not close file $temporary_news_file: $!\n";
-
-    move($temporary_news_file_name,$news_file_name);
 
     return $counter;
 }
