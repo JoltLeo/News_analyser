@@ -158,7 +158,7 @@ sub check_superlative{
 sub final_classifier{
     #Receives the metrics from the other functions to classify the seriousness metrics
      my @inputs = ($_[0], $_[1]); 
-     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words (@inputs), check_superlative ($inputs[0]));
+     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words ($inputs[0], $inputs[1]), check_superlative ($inputs[0]));
 
     return @results;
 }
