@@ -102,9 +102,9 @@ sub check_curse_words{
     my $curse_word_file_name = $_[1];
     my $temporary_news_file_name = "tempFileToCheck";
 
-    open (my $news, "<", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
-    open (my $curse_file, "<", $curse_word_file_name) or die "ERROR: Could not open file $curse_word_file_name: $!\n";
-    open (my $temporary_news_file, ">", $temporary_news_file_name) or die "ERROR: Could not open file $temporary_news_file_name: $!\n";
+    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $curse_file, "<:encoding(UTF-8)", $curse_word_file_name) or die "ERROR: Could not open file $curse_word_file_name: $!\n";
+    open (my $temporary_news_file, "+>:encoding(UTF-8)", $temporary_news_file_name) or die "ERROR: Could not open file $temporary_news_file_name: $!\n";
 
     my $news_line;
     my $curse_word;
@@ -112,14 +112,23 @@ sub check_curse_words{
     my $temporary_counter = 0;
     my @matches;
 
+    
+    while ($news_line = <$news>){
+        print $temporary_news_file $news_line;     
+    }
+
+    seek ($temporary_news_file,0,0);
+       
     while ($curse_word = <$curse_file>){
-        while ($news_line = <$news>){
-            @matches = $news_line =~ /$curse_word/;
+        chomp $curse_word;
+        while ($news_line = <$temporary_news_file>){
+            @matches = $news_line =~ m/$curse_word/g;
             $temporary_counter = scalar(@matches);
             $counter = $counter + $temporary_counter;
             $news_line =~ s/$curse_word/*censurado*/g;
-            print $temporary_news_file $news_line;
+            print $temporary_news_file $news_line;            
         }
+        seek ($temporary_news_file,0,0);
     }
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
@@ -149,7 +158,7 @@ sub check_superlative{
     }
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
-
+    print $counter;
     return $counter;
 }
 
@@ -157,8 +166,8 @@ sub check_superlative{
 #Inputs: news text file, curse_words text file
 sub final_classifier{
     #Receives the metrics from the other functions to classify the seriousness metrics
-     my @inputs = ($_[0], $_[1]); 
-     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words ($inputs[0], $inputs[1]), check_superlative ($inputs[0]));
+     my @inputs = @_; 
+     my @results = (check_emoticons($inputs[0]), check_first_person ($inputs[0]), check_upper_to_lower_case_ratio ($inputs[0]), check_curse_words (@inputs), check_superlative ($inputs[0]));
 
     return @results;
 }
