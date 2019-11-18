@@ -115,11 +115,11 @@ sub check_curse_words{
     while ($curse_word = <$curse_file>){
         chomp $curse_word;
         while ($news_line = <$news>){
-			$counter ++;
-            @matches = $news_line =~ m/$curse_word/g;
+            @matches = $news_line =~ m/\b$curse_word\b/g;
             $temporary_counter = scalar(@matches);
             $counter = $temporary_counter + $counter;
         }
+		seek($news,0,0);
     }
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";
