@@ -1,5 +1,6 @@
 package classify_news;
 
+use 5.010001;
 use strict;
 use warnings;
 use List::Util qw( max );
@@ -27,7 +28,7 @@ sub classify_news{
     #Arguments: path news text file [blacklist text file [curse words text file]] 
     if ((scalar (@inputs) < 1) || (scalar (@inputs) > 3) ){
         print "Incorrect input\n";
-        print "Try: ./<name of program>.pl <path to news text file> [path to blacklist text file [curse words text file]] \n";
+        print "Try: classify_news (<path to news text file> [path to blacklist text file] [curse words text file]) \n";
         print "NOTE: you MUST enter a news text file written in PORTUGUESE!\n\n";
         return -2;
     }
