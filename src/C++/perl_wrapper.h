@@ -17,7 +17,7 @@ class Perl_wrapper
         Perl_wrapper (string = "blacklist.txt", string = "curse_words.txt");
         ~Perl_wrapper ();
         void interpreter (char *);
-        int classify_news (string, string, string);
+        int classify_news (string);
 
     private:
         PerlInterpreter *my_perl;
@@ -26,6 +26,6 @@ class Perl_wrapper
         /* my_argv[0] = ""; my_argv[1] = <perl module name>*/
         char *my_argv[2];
 
-}
+};
 
 #endif

@@ -18,7 +18,7 @@ our @EXPORT = qw(final_classifier);
 sub check_emoticons{
     #Receives news file as argument
     my $news_file_name = $_[0];
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
 
     
     my $temporary_emoji = 0;
@@ -52,7 +52,7 @@ sub check_emoticons{
 sub check_first_person{
     #Receives the news file as arguments
     my $news_file_name = $_[0];
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
 
     my $counter = 0;
     my @matches;
@@ -101,8 +101,8 @@ sub check_curse_words{
     my $news_file_name = $_[0]; 
     my $curse_word_file_name = $_[1];
 
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
-    open (my $curse_file, "<:encoding(UTF-8)", $curse_word_file_name) or die "ERROR: Could not open file $curse_word_file_name: $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $curse_file, "<:", $curse_word_file_name) or die "ERROR: Could not open file $curse_word_file_name: $!\n";
 
     my $curse_word;
 	my $news_line;
@@ -133,7 +133,7 @@ sub check_curse_words{
 sub check_superlative{
     my $news_file_name = $_[0];
 
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file $news_file_name: $!\n";
 
     my @matches;
     my $temporary_counter = 0;

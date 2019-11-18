@@ -2,8 +2,7 @@ package news_subject_classification;
 
 use strict;
 use warnings;
-use List::Util qw( max );
-
+#use List::Util qw[max];
 
 use check_news_format;
 
@@ -36,7 +35,7 @@ sub check_celebrity_subject{
     }
     
     #Trying to open news' file
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
     my $line_counter = 0;
     my @word_counter = (0,0,0,0,0,0,0,0,0);
     my @matches;
@@ -154,7 +153,7 @@ sub check_economy_subject{
     }
     
     #Trying to open news' file
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
     my $line_counter = 0;
     my @word_counter = (0,0,0,0,0,0,0,0,0);
     my @matches;
@@ -270,7 +269,7 @@ sub check_politics_subject{
     }
     
     #Trying to open news' file
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
     my $line_counter = 0;
     my @word_counter = (0,0,0,0,0,0,0,0,0);
     my @matches;
@@ -386,7 +385,7 @@ sub check_science_subject{
     }
     
     #Trying to open news' file
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
     my $line_counter = 0;
     my @word_counter = (0,0,0,0,0,0,0,0,0);
     my @matches;
@@ -503,7 +502,7 @@ sub check_sports_subject{
     }
     
     #Trying to open news' file
-    open (my $news, "<:encoding(UTF-8)", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
+    open (my $news, "<:", $news_file_name) or die "ERROR: Could not open file '$news_file_name': $!\n";
     my $line_counter = 0;
     my @word_counter = (0,0,0,0,0,0,0,0,0);
     my @matches;
@@ -610,7 +609,12 @@ sub classify_subject {
 #        print $_, "\n";
 #    }
 
-    my $max_grade = max (@subject_grades);
+    my $max_grade = 0;
+    foreach (@subject_grades){
+        if ($_ > $max_grade){
+	    $max_grade = $_ ;	
+	}
+    }
 
     if ($subject_grades[0] == $max_grade) {
         return "celebrity";

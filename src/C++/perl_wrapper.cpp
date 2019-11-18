@@ -20,10 +20,8 @@ Perl_wrapper::~Perl_wrapper ()
 
 void Perl_wrapper::interpreter (char * perl_code_path)
 {
-    char _MYARGV_PERL_MODULE_NAME[] = perl_code_path; //remove warnings
-    char _MYARGV_NOTHING_NAME[] = ""; //remove warnings
-    my_argv[0] = static_cast<char*> (_MYARGV_NOTHING_NAME) ;
-    my_argv[1] = static_cast<char*> (_MYARGV_PERL_MODULE_NAME);
+    my_argv[0] = (char *) "";
+    my_argv[1] = perl_code_path;
     perl_parse(my_perl, 0, 2, my_argv, (char **)NULL);
     perl_run(my_perl);
 }
@@ -44,7 +42,7 @@ int Perl_wrapper::classify_news (string news_file)
     XPUSHs(sv_2mortal(newSVpv(curse_words_file.c_str(),curse_words_file.length())));
 
     PUTBACK;
-    call_pv("salvaPerfil", G_SCALAR);
+    call_pv("classify_news", G_SCALAR);
     SPAGAIN;
     
     resultado = POPi;

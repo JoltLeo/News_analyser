@@ -1,10 +1,12 @@
-package classify_news;
+#package classify_news;
 
 use 5.010001;
 use strict;
 use warnings;
-use List::Util qw( max );
 use Exporter;
+
+use File::Basename;
+use lib dirname (__FILE__) . "/";
 
 #My modules
 use check_news_format;
