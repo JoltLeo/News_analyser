@@ -1,24 +1,39 @@
-CC=$(shell perl -V::cc:)
-CCFLAGS=$(shell perl -MExtUtils::Embed -e ccopts)
+CC=g++
+CCFLAGS=$(shell perl -MExtUtils::Embed -e ldopts)
 
-LD=$(shell perl -V::ld:)
+##`perl -MExtUtils::Embed -e ccopts -e ldopts`
+
+LD=g++
 LDFLAGS=$(shell perl -MExtUtils::Embed -e ldopts)
 
-OBJECTS = 
-VERSION=01
+OBJECTS = error_class.o\
+          perl_wrapper.o
 
-all: $(OBJECTS)
-
-perl-ex$(VERSION).o: perl-ex$(VERSION).c
-	$(CC) $(CCFLAGS) -o $@ -c $<
-
-perl-ex$(VERSION).o: perl-ex$(VERSION).o
-	$(LD) -o $@ $? $(LDFLAGS)
+TESTOBJECTS= error_class.o\
+             perl_wrapper.o\
+			 test.o
 
 
+ALL: news_analyser\
+	 test
+	 
+all: news_analyser\
+	 test
+
+.cpp.o:
+	$(CC) $(CFLAGS) -c $<
+
+news_analyser: $(OBJECTS)
+	$(LD) $(LDFLAGS) -o $@ $(OBJECTS)
+
+test: $(TESTOBJECTS)
+	$(LD) $(LDFLAGS) -o $@ $(OBJECTS)
+
+
+install: $(OBJECTS)
 
 
 clean:
-	rm -f perl-ex$(VERSION)
+	rm -f *.o $(ALL)
 
 
