@@ -18,7 +18,11 @@ class Perl_wrapper
         ~Perl_wrapper ();
         void interpreter (char *);
         int classify_news (string);
-
+        void set_blacklist (string = "blacklist.txt");
+        void set_curse_words (string = "curse_words.txt");
+        string get_blacklist ();
+        string get_curse_words ();
+        
     private:
         PerlInterpreter *my_perl;
         string blacklist_file;

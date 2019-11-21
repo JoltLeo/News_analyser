@@ -52,3 +52,24 @@ int Perl_wrapper::classify_news (string news_file)
 
     return resultado;
 }
+
+
+void Perl_wrapper::set_blacklist (string blacklist_path)
+{
+    blacklist_file = blacklist_path;
+}
+
+void Perl_wrapper::set_curse_words (string curse_words_path);
+{
+    curse_words_file = curse_words_path;
+}
+
+string Perl_wrapper::get_blacklist ()
+{
+    return blacklist_file;
+}
+
+string Perl_wrapper::get_curse_words ()
+{
+    return curse_words_file;
+}
