@@ -14,16 +14,19 @@ using namespace std;
 
 class Error_class
 {
-    friend ostream & operator << (ostream &, const Error_class);
+    friend ostream & operator << (ostream &, Error_class);
 
     public:
-        string get_error_message (int = int_code_output);
-        string get_error_message (string);
+	Error_class ();
         void set_code_output (int);
+        void set_code_output (string);
         int get_code_output ();
 
     private:
         int int_code_output;
+	string string_code_output;
+        string get_error_message (int);
+        string get_error_message (string);
 };
 
 #endif
