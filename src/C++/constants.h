@@ -11,5 +11,6 @@
 #define NEWS_FILE_ERROR             -1
 #define CORRUPTED_FILE              -2
 #define CLASSIFICATION_FILE_ERROR   -3
+#define BLANK_NEWS_FILENAME         -4
 
 #endif

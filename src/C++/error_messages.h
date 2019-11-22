@@ -10,7 +10,7 @@ const char * const error_messages [] =
     "ERROR: Could not open news file on function show_news on show_news.cpp\n", // error -1
     "ERROR: Classification file corrupted\n", // error -2
     "ERROR: Could not find classification file\n", // -3
-    ""
+    "ERROR: Blank news filename on function show_news on show_news.cpp\n"
 };
 
 

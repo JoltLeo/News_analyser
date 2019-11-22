@@ -12,16 +12,18 @@ int show_news (string news_filename){
     string line;
 
     if (news_filename.length() == 0){
-        cout << "ERROR: Blank filename" << endl;
+        return BLANK_NEWS_FILENAME;
     }
 
     file.open(news_filename);
     if (file.is_open()){
-        while (getline (file, news_line)) {
+        while (getline (file, line)) {
             cout << line << endl;
         }
-    }
-    //cout << "Could not open file " << news_filename << endl;
-    return NEWS_FILE_ERROR; 
+    }else{
+        //cout << "Could not open file " << news_filename << endl;
+        return NEWS_FILE_ERROR;
+	}
+	return SUCCESS; 
     
 }
