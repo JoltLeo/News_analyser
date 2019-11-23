@@ -1,12 +1,13 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include "constants.h"
 #include "classification_statistics.h"
 
 using namespace std;
 
-int classification_statistics(){
+int classification_statistics(string filename){
     unsigned counter_serious = 0;
     unsigned counter_less_serious = 0;
     unsigned ratio = 0;
@@ -17,12 +18,12 @@ int classification_statistics(){
     string line;
     ifstream classification_file;
 
-    classification_file.open();
+    classification_file.open(filename);
     if (!classification_file.is_open()){
         return CLASSIFICATION_FILE_ERROR;
     }
 
-    while (getline(line,classification_file)){
+    while (getline(classification_file,line)){
         serious_position = line.find (SERIOUS);
         less_serious_position = line.find(LESS_SERIOUS);
 
@@ -40,6 +41,6 @@ int classification_statistics(){
     cout << "----------------------------------------------------------------" << endl;
     cout << "|    NUMBER OF NEWS    |   SERIOUS NEWS    | LESS SERIOUS NEWS |" << endl;
     cout << "----------------------------------------------------------------" << endl;
-    cout << "       " <<  counter_less_serious + counter_serious << "              " << counter_serious << "       " << counter_less_serious << endl;
+    cout << setw(13) <<  counter_less_serious + counter_serious << setw(18) << counter_serious << setw(20) << counter_less_serious << endl;
     cout << "----------------------------------------------------------------" << endl;
 }
