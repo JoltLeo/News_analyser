@@ -59,7 +59,7 @@ void Perl_wrapper::set_blacklist (string blacklist_path)
     blacklist_file = blacklist_path;
 }
 
-void Perl_wrapper::set_curse_words (string curse_words_path);
+void Perl_wrapper::set_curse_words (string curse_words_path)
 {
     curse_words_file = curse_words_path;
 }

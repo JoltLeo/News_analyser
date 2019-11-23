@@ -18,27 +18,27 @@ int main ()
         {
             case 1:
                 cout << "Option 1 choosen" << endl;            
-                menu.show_news ();
+                menu.menu_show_news ();
                 break;
         
             case 2:
                 cout << "Option 2 choosen" << endl;            
-                menu.list_less_serious ();
+                menu.menu_list_less_serious ();
                 break;
 
             case 3:
                 cout << "Option 3 choosen" << endl;            
-                menu.classify_news ();
+                menu.menu_classify_news ();
                 break;
 
             case 4:
                 cout << "Option 4 choosen" << endl;            
-                menu.chance_blacklist ();
+                menu.menu_change_blacklist ();
                 break;
 
             case 5:
                 cout << "Option 5 choosen" << endl;
-                menu.classification_statistics ();
+                menu.menu_classification_statistics ();
                 break;
 
             default:

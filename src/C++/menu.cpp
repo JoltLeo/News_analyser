@@ -89,7 +89,7 @@ int add_to_classification_file (string news_title, int classification_result)
     return SUCCESS;
 }
 
-string Menu::get_news_title (string news_filename);
+string Menu::get_news_title (string news_filename)
 {
     ifstream file;
     string line;
@@ -101,8 +101,8 @@ string Menu::get_news_title (string news_filename);
 
     file.open(news_filename);
     if (file.is_open()){
-        getline (file, line)
-        title = '\"' + line + '\"'
+        getline (file, line);
+        title = '\"' + line + '\"';
     }else{
         //cout << "Could not open file " << news_filename << endl;
         return "";
@@ -117,7 +117,7 @@ void Menu::set_input_news_file ()
     Error_class error_obj;
     cout << "Please, enter the path to the news file or just press enter to use default path: ";
     getline (cin, line);
-    if (line.length > MAXIMUM_FILENAME_LENGTH)
+    if (line.length() > MAXIMUM_FILENAME_LENGTH)
     {
         error_obj.set_code_output (EXCEED_MAXIMUM_SIZE);
         cout << "Using default path" << endl;
@@ -143,7 +143,7 @@ void Menu::set_input_blacklist_file ()
     Error_class error_obj;
     cout << "Please, enter the path to the blacklist file or just press enter to use default path: ";
     getline (cin, line);
-    if (line.length > MAXIMUM_FILENAME_LENGTH)
+    if (line.length() > MAXIMUM_FILENAME_LENGTH)
     {
         error_obj.set_code_output (EXCEED_MAXIMUM_SIZE);
         cout << "Using default path" << endl;
@@ -168,7 +168,7 @@ void Menu::set_input_curse_words_file ()
     Error_class error_obj;
     cout << "Please, enter the path to the curse words file or just press ENTER to use default path: ";
     getline (cin, line);
-    if (line.length > MAXIMUM_FILENAME_LENGTH)
+    if (line.length() > MAXIMUM_FILENAME_LENGTH)
     {
         error_obj.set_code_output (EXCEED_MAXIMUM_SIZE);
         cout << "Using default path" << endl;
@@ -188,7 +188,7 @@ void Menu::set_input_curse_words_file ()
     }
 }
 
-void Menu::show_news
+void Menu::menu_show_news ()
 {
     Error_class error_obj;
     int output;
@@ -201,7 +201,7 @@ void Menu::show_news
     }
 }
 
-void Menu::list_less_serious ()
+void Menu::menu_list_less_serious ()
 {
     Error_class error_obj;
     int output;
@@ -213,7 +213,7 @@ void Menu::list_less_serious ()
     }
 }
 
-void Menu::classify_news ()
+void Menu::menu_classify_news ()
 {
     Error_class error_obj;
     int output;
@@ -222,7 +222,7 @@ void Menu::classify_news ()
     set_input_blacklist_file ();
     set_input_curse_words_file ();
     Perl_wrapper wrapper (inputs[1], inputs[2]);
-    output = wrapper.classify_news (inputs[0])
+    output = wrapper.classify_news (inputs[0]);
     if (output < 0)
     {
         error_obj.set_code_output (output);
@@ -238,12 +238,24 @@ void Menu::classify_news ()
         }
         else
         {
-            output = add_to_classification_file (string news_title, output);     
+            output = add_to_classification_file (get_news_title(inputs[0]), output);     
         }
     }
 }
 
-void Menu::chance_blacklist ()
+void Menu::menu_classification_statistics ()
+{
+    Error_class error_obj;
+    int output;
+    output = classification_statistics ("news_classifications.txt");
+    if (output < 0)
+    {
+        error_obj.set_code_output (output);
+        cout << error_obj << endl;
+    }
+}
+
+void Menu::menu_change_blacklist ()
 {
     Error_class error_obj;
     int output;

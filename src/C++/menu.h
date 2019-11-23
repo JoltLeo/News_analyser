@@ -2,8 +2,13 @@
 #define MENU_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <vector>
+#include <string.h>
+#include <cstdlib>
+#include <cstdio>
+#include <unistd.h>
+
 
 #include "error_messages.h"
 #include "change_blacklist.h"
@@ -24,11 +29,11 @@ class Menu
 {
     public:
         string get_news_title (string);
-        void show_news ();
-        void list_less_serious ();
-        void classify_news ();
-        void chance_blacklist ();
-        void classification_statistics ();
+        void menu_show_news ();
+        void menu_list_less_serious ();
+        void menu_classify_news ();
+        void menu_change_blacklist ();
+        void menu_classification_statistics ();
         void set_input_news_file ();
         void set_input_blacklist_file ();
         void set_input_curse_words_file ();
@@ -37,8 +42,8 @@ class Menu
         // inpust [0] = news file path
         //inputs [1] = blacklist file path
         //inputs [2] = curse words file path
-        static vector <string> inputs [3];
-}
+        static string inputs [3];
+};
 
 
 #endif

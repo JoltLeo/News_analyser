@@ -1,0 +1,12 @@
+g++ -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts` -c menu.cpp 
+Makefile:26: recipe for target 'menu.o' failed
+g++ -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts` -c menu.cpp 
+Makefile:26: recipe for target 'menu.o' failed
+g++ -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts` -c menu.cpp 
+Makefile:26: recipe for target 'menu.o' failed
+g++ -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts` -c menu.cpp 
+Makefile:26: recipe for target 'menu.o' failed
+g++ -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts` -c menu.cpp 
+Makefile:26: recipe for target 'menu.o' failed
+g++ -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts` -c menu.cpp 
+Makefile:26: recipe for target 'menu.o' failed
