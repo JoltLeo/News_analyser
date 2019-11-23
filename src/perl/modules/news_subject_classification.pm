@@ -30,8 +30,8 @@ sub check_celebrity_subject{
     
     #Checking if the format of the file is right
     my $returnCheck = check_news_format( $news_file_name );
-    if ($returnCheck == -1) {
-        return -1;
+    if ($returnCheck < 0) {
+        return $returnCheck;
     }
     
     #Trying to open news' file
@@ -148,8 +148,8 @@ sub check_economy_subject{
     
     #Checking if the format of the file is right
     my $returnCheck = check_news_format( $news_file_name );
-    if ($returnCheck == -1) {
-        return -1;
+    if ($returnCheck < 0) {
+        return $returnCheck;
     }
     
     #Trying to open news' file
@@ -264,8 +264,8 @@ sub check_politics_subject{
     
     #Checking if the format of the file is right
     my $returnCheck = check_news_format( $news_file_name );
-    if ($returnCheck == -1) {
-        return -1;
+    if ($returnCheck < 0) {
+        return $returnCheck;
     }
     
     #Trying to open news' file
@@ -380,8 +380,8 @@ sub check_science_subject{
     
     #Checking if the format of the file is right
     my $returnCheck = check_news_format( $news_file_name );
-    if ($returnCheck == -1) {
-        return -1;
+    if ($returnCheck < 0) {
+        return $returnCheck;
     }
     
     #Trying to open news' file
@@ -497,8 +497,8 @@ sub check_sports_subject{
     
     #Checking if the format of the file is right
     my $returnCheck = check_news_format( $news_file_name );
-    if ($returnCheck == -1) {
-        return -1;
+    if ($returnCheck < 0) {
+        return $returnCheck;
     }
     
     #Trying to open news' file
@@ -631,7 +631,7 @@ sub classify_subject {
     else{  
         return "sports"; 
     }
-    return -1;
+    return -18;
 }
 
 

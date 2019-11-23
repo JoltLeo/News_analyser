@@ -17,14 +17,14 @@ class Error_class
     friend ostream & operator << (ostream &, Error_class);
 
     public:
-	Error_class ();
+	    Error_class ();
         void set_code_output (int);
         void set_code_output (string);
         int get_code_output ();
 
     private:
         int int_code_output;
-	string string_code_output;
+	    string string_code_output;
         string get_error_message (int);
         string get_error_message (string);
 };

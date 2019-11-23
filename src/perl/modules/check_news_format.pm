@@ -28,7 +28,7 @@ sub check_news_format{
     chomp $line;
     if ((not defined $line) || ($line eq "") || (length($line) == 0)){
         close $news or die "ERROR: Could not close file $news_file_name: $!\n";
-        return -1;
+        return -13;
     }
 
     #Matches date format in the third line of the news
@@ -43,7 +43,7 @@ sub check_news_format{
     
     if ($counter == 0){
         close $news or die "ERROR: Could not close file $news_file_name: $!\n";
-        return -1;
+        return -14;
     }
     
     
@@ -53,7 +53,7 @@ sub check_news_format{
   
     if ((not defined $line) || ($line eq "") || (length($line) == 0)){
         close $news or die "ERROR: Could not close file $news_file_name: $!\n";
-        return -1;
+        return -15;
     }
 
     close $news or die "ERROR: Could not close file $news_file_name: $!\n";

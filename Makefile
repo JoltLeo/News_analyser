@@ -7,18 +7,18 @@ LD=g++
 LDFLAGS=$(shell perl -MExtUtils::Embed -e ldopts)
 
 OBJECTS = error_class.o\
-          perl_wrapper.o
+          perl_wrapper.o\
+		  change_blacklist.o\
+		  classification_statistics.o\
+		  list_less_serious.o\
+		  menu.o\
+		  show_news.o\
+		  main.o
 
-TESTOBJECTS= error_class.o\
-             perl_wrapper.o\
-			 test.o
 
-
-ALL: news_analyser\
-	 test
+ALL: news_analyser
 	 
-all: news_analyser\
-	 test
+all: news_analyser
 
 .cpp.o:
 	$(CC) $(CFLAGS) -c $<
@@ -26,12 +26,7 @@ all: news_analyser\
 news_analyser: $(OBJECTS)
 	$(LD) $(LDFLAGS) -o $@ $(OBJECTS)
 
-test: $(TESTOBJECTS)
-	$(LD) $(LDFLAGS) -o $@ $(OBJECTS)
-
-
 install: $(OBJECTS)
-
 
 clean:
 	rm -f *.o $(ALL)

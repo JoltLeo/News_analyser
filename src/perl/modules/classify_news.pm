@@ -32,13 +32,14 @@ sub classify_news{
         print "Incorrect input\n";
         print "Try: classify_news (<path to news text file> [path to blacklist text file] [curse words text file]) \n";
         print "NOTE: you MUST enter a news text file written in PORTUGUESE!\n\n";
-        return -2;
+        return -16;
     }
 
     #Checking if the news is on the right format
-    if (check_news_format ($inputs[0]) == -1) {
+    $return_value;
+    if (($return_value = check_news_format ($inputs[0])) < 0) {
         print "News text file $inputs[0] in wrong format! Check documentation at https://github.com/JoltLeo/News_analyser \n";
-        return -1;
+        return $return_value;
     }
 
 
@@ -141,6 +142,6 @@ sub classify_news{
         print "\nThis sports news $inputs[0] is serious.\n\n";
         return 0
     }
-    return -1;
+    return -17;
 }
 
