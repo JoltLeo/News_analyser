@@ -36,7 +36,7 @@ sub classify_news{
     }
 
     #Checking if the news is on the right format
-    $return_value;
+    my $return_value;
     if (($return_value = check_news_format ($inputs[0])) < 0) {
         print "News text file $inputs[0] in wrong format! Check documentation at https://github.com/JoltLeo/News_analyser \n";
         return $return_value;
