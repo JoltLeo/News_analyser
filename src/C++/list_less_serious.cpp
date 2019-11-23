@@ -8,7 +8,7 @@
 using namespace std;
 //Classification file pattern: Title=classification
 
-int list_less_serious (){
+int list_less_serious (string filename){
 
     string line;
     string title;
@@ -16,15 +16,15 @@ int list_less_serious (){
     size_t position = 0;
     ifstream classification_file;
 
-    classification_file.open("classification.txt");
+    classification_file.open(filename);
     if(!classification_file.is_open()){
         //cout << "ERROR: Could not find classification file" << endl;
         return CLASSIFICATION_FILE_ERROR;
     }
 
-    cout << "-------------------------------------------------------------------";
-    cout << "|                NOT SO SERIOUS NEWS BY TITLE                     |";
-    cout << "-------------------------------------------------------------------";
+    cout << "-------------------------------------------------------------------------" << endl;
+    cout << "|                  NOT SO SERIOUS NEWS BY TITLE                         |" << endl;
+    cout << "-------------------------------------------------------------------------" << endl;
 
     while (getline(classification_file, line)){
         position = line.find(DELIMITER);

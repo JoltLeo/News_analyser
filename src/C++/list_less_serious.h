@@ -1,6 +1,11 @@
 #ifndef LIST_LESS_SERIOUS_H
 #define LIST_LESS_SERIOUS_H
 
-int list_less_serious ();
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int list_less_serious (string);
 
 #endif
