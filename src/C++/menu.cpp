@@ -5,18 +5,17 @@ using namespace std;
 
 void show_menu()
 {
-    cout << "\n---------------------------------------------------------------------------\n"<< endl;
-    cout << "\n---------------------------------------------------------------------------\n"<< endl;
-    cout <<  "                             Menu                                          \n" << endl;
-    cout <<  "---------------------------------------------------------------------------\n"<< endl;
-    cout <<  "|Type 0 to quit the program                                               |\n"<< endl;
-    cout <<  "|Type 1 to show a news                                                    |\n"<< endl;
-    cout <<  "|Type 2 to show the title of news classified as less serious              |\n"<< endl;
-    cout <<  "|Type 3 to classify the one or more news in serious or NOT serious        |\n"<< endl;
-    cout <<  "|Type 4 to add/remove an author from the blacklist                        |\n"<< endl;
-    cout <<  "|Type 5 to show a relation of all classified news                         |\n"<< endl;
-    cout <<  "---------------------------------------------------------------------------\n"<< endl;
-    cout <<  "NOTE: this program do not interpret English news, you MUST enter a news text file written in PORTUGUESE when asked!\n\n"<< endl;
+    cout << "\n---------------------------------------------------------------------------\n";
+    cout <<  "                             Menu                                          \n" ;
+    cout <<  "---------------------------------------------------------------------------\n";
+    cout <<  "|Type 0 to quit the program                                               |\n";
+    cout <<  "|Type 1 to show a news                                                    |\n";
+    cout <<  "|Type 2 to show the title of news classified as less serious              |\n";
+    cout <<  "|Type 3 to classify the one or more news in serious or NOT serious        |\n";
+    cout <<  "|Type 4 to add/remove an author from the blacklist                        |\n";
+    cout <<  "|Type 5 to show a relation of all classified news                         |\n";
+    cout <<  "---------------------------------------------------------------------------\n";
+    cout <<  "NOTE: this program do not interpret English news, you MUST enter a news text file written in PORTUGUESE when asked!\n";
 }
 
 int add_to_classification_file (string news_title, int classification_result)
@@ -260,7 +259,7 @@ void Menu::menu_change_blacklist ()
     Error_class error_obj;
     int output;
     unsigned control = 0;
-    char letter;
+    string letter;
     string name;
     set_input_blacklist_file ();
     cout << "Type \"a\" to add an/a author/source to the blacklist file" << endl;
@@ -268,8 +267,8 @@ void Menu::menu_change_blacklist ()
     cout << "Type \"e\" to exit" << endl;
     while (control == 0)
     {
-        letter = cin.get ();
-        switch (letter)
+        getline(cin, letter);
+        switch (letter[0])
         {
             case 'A':
             case 'a':

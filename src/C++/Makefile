@@ -33,6 +33,6 @@ install: $(OBJECTS)
 
 
 clean:
-	rm -f *.o $(ALL)
+	rm -f *.o news_analyser
 
 

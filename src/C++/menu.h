@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <unistd.h>
-
+#include <vector>
 
 #include "error_messages.h"
 #include "change_blacklist.h"
@@ -42,7 +42,7 @@ class Menu
         // inpust [0] = news file path
         //inputs [1] = blacklist file path
         //inputs [2] = curse words file path
-        static string inputs [3];
+        vector <string> inputs{(string)"noticia.txt", (string)"blacklist.txt", (string)"curse_words.txt"};
 };
 
 
