@@ -220,7 +220,10 @@ void Menu::menu_classify_news ()
     set_input_news_file ();
     set_input_blacklist_file ();
     set_input_curse_words_file ();
-    Perl_wrapper wrapper (inputs[1], inputs[2]);
+    static Perl_wrapper wrapper;
+    wrapper.set_blacklist (inputs[1]);
+    wrapper.set_curse_words (inputs[2]);
+    wrapper.interpreter ((char *)"../perl/modules/classify_news.pm");
     output = wrapper.classify_news (inputs[0]);
     if (output < 0)
     {

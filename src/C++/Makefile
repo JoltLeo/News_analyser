@@ -10,16 +10,16 @@ LDFLAGS= -std=c++11 `perl -MExtUtils::Embed -e ccopts -e ldopts`
 
 OBJECTS = error_class.o\
           perl_wrapper.o\
-		  change_blacklist.o\
-		  classification_statistics.o\
-		  list_less_serious.o\
-		  menu.o\
-		  show_news.o\
-		  main.o
+	  change_blacklist.o\
+	  classification_statistics.o\
+	  list_less_serious.o\
+	  menu.o\
+	  show_news.o\
+	  main.o
 
 
 ALL: news_analyser
-	 
+		 
 all: news_analyser
 
 .cpp.o:
@@ -34,5 +34,3 @@ install: $(OBJECTS)
 
 clean:
 	rm -f *.o news_analyser
-
-

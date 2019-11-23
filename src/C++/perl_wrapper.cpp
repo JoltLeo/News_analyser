@@ -29,7 +29,6 @@ void Perl_wrapper::interpreter (char * perl_code_path)
 int Perl_wrapper::classify_news (string news_file)
 {
     int resultado;
-    
     // Reminiscing Professor Brafman classes :)
     dSP; // Initialize Stack Pointer
     ENTER;
