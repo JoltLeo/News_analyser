@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void add_to_blacklist (string, string);
-void remove_from_blacklist (string, string);
+int add_to_blacklist (string, string);
+int remove_from_blacklist (string, string);
 
 #endif
